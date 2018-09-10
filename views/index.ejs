@@ -7,31 +7,41 @@
 
     <style>
       .atmWrapper{
-        background-color: Red;
-        padding: 20px 20px 20px 20px;
+        background-color: #ef2315;
+        padding: 10px;
         width: 30%;
+        border: 2px solid #ef2315;
+        border-radius: 25px;
       }
       .atmInnerWrapper{
         background-color: Gray;
         padding: 10px 10px;
+        border: 2px solid gray;
+        border-radius: 25px;
       }
       .atmTitle{
         color: white;
-        background-color: black;
+        background-color: darkgrey;
         font-weight: bold;
         font-size: 22px;
-        padding:5px;
-        text-align: right;
+        padding:10px;
+        text-align: center;
+        border: 2px solid white;
+        border-radius: 25px;
       }
       .atmScreenWrapper{
-        background-color: Red;
+        background-color: lightgray;
         padding: 10px 10px;
+        border: 2px solid lightgray;
+        border-radius: 25px;
       }
       .atmButtonWrapper{
-        background-color: Red;
-        padding: 10px 40px;
+        background-color: lightgray;
+        padding: 20px 40px 0px 40px;
         width:100%;
         height:100%;
+        border: 2px solid lightgray;
+        border-radius: 25px;
       }
     </style>
     <script
@@ -84,7 +94,7 @@
   </head>
   <body>
     <div class="atmWrapper" id="atmWrapper">
-        <img src="images/atmlogo2.png" style="height:50px;"><br><br>
+        <img src="images/atmlogo2.png" style="height:50px; display:block; margin:auto;"><br>
       <div class="atmInnerWrapper" id="atmInnerWrapper">        
         <p class="atmTitle" id="atmTitle">
           ATM
@@ -112,6 +122,7 @@
                 </tr>
               </table>
           </div>   
+          <br>
           <div class="atmButtonWrapper">
               <table style="table-layout: fixed; width: 80%;margin: 0 auto;">
                 <tr>
