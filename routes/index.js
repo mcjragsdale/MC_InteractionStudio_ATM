@@ -9,8 +9,39 @@ router.get('/', function(req, res, next) {
 
 /* GET home page. */
 router.get('/balanceinquiry', function(req, res, next) {  
+  
+  getAuthToken(function(err, access_token){  
+    var options2 = { method: 'POST',
+      url: 'https://na5.thunderhead.com/one/oauth2/rt/api/2.0/interaction',
+      qs: { sk: 'ONE-LJBKEO4Y7J-5669' },
+      headers: 
+      { 'Postman-Token': 'f4e190b4-49c2-4e6e-9c0c-038d1a44a474',
+        'Cache-Control': 'no-cache',
+        Authorization: 'Bearer ' + access_token,
+        'Content-Type': 'application/json' },
+      body: 
+      { customerKey: 'lauren.salesforcenz@gmail.com',
+        uri: 'atm://atm/offer',
+        properties: [ { name: 'action', value: 'balanceInquiry' } ] },
+      json: true 
+    };
 
 
+    request(options2, function (error, response, body) {      
+      if (error){
+        throw new Error(error);
+      } 
+      var d = new Buffer(body.optimizations[0].data, 'base64').toString('ascii');
+      res.send({ 
+        Body: d,  
+        Balance: '$35,324' 
+      });
+      console.log(body);
+    });    
+  });
+});
+
+function getAuthToken(callback) {
   var ci = '344c019c-1fa0-4854-9a23-9cb6f3a7f33d'; //postman.getEnvironmentVariable('isClientId');
   var cs = '9ae8a1e0-869b-486b-b71d-dd0c54d75aaa'; //postman.getEnvironmentVariable('isClientSecret');
   var cics = ci + ":" + cs;
@@ -27,43 +58,16 @@ router.get('/balanceinquiry', function(req, res, next) {
     form: { grant_type: 'client_credentials' } 
   };
 
-  request(options, function (error, response, tokenBody) {
+  request(options, function (error, response, body) {
     if (error){
-      throw new Error(error);
-    } 
-    var tokenData = JSON.parse(tokenBody);
-    var options2 = { method: 'POST',
-      url: 'https://na5.thunderhead.com/one/oauth2/rt/api/2.0/interaction',
-      qs: { sk: 'ONE-LJBKEO4Y7J-5669' },
-      headers: 
-      { 'Postman-Token': 'f4e190b4-49c2-4e6e-9c0c-038d1a44a474',
-        'Cache-Control': 'no-cache',
-        Authorization: 'Bearer ' + tokenData.access_token,
-        'Content-Type': 'application/json' },
-      body: 
-      { customerKey: 'lauren.salesforcenz@gmail.com',
-        uri: 'atm://atm/offer',
-        properties: [ { name: 'action', value: 'balanceInquiry' } ] },
-      json: true 
-    };
-
-
-    request(options2, function (error, response, interactionBody) {
-      
-      if (error){
-        throw new Error(error);
-      } 
-
-      var d = new Buffer(interactionBody.optimizations[0].data, 'base64').toString('ascii')
-
-
-      res.send({ 
-        Body: d,  
-        Balance: '$35,324' 
-      });
-
-      console.log(interactionBody);
-    });    
+      return callback(err);
+    }
+    try{
+      callback(null, JSON.parse(body).access_token);
+    }catch(err){
+      callback(err);
+    }
   });
-});
+}
+
 module.exports = router;

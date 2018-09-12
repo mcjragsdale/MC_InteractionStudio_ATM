@@ -1,0 +1,7 @@
+{
+    "name": "Interaction Studio ATM Example",
+    "description": "A VERY simple ATM",
+    "repository": "https://github.exacttarget.com/SE-Experts/InteractionStudio_ATM",
+    "logo": "https://node-js-sample.herokuapp.com/node.png",
+    "keywords": ["node", "express", "static"]
+  }
