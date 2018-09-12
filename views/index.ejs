@@ -80,7 +80,7 @@
             'url' : '/balanceinquiry',
             'type' : 'GET',            
             'success' : function(data) {                              
-                $("#atmScreen").html("<p style='margin-top:0px;'>Your balance available for withdrawl <br>" + data.Balance + "</p>" + data.Body); 
+                $("#atmScreen").html("<p style='margin-top:0px;'>Available for withdrawl:" + data.Balance + "<br><br>You may be interested in this offer?</p>" + data.Body); 
 
             },
             'error' : function(request,error)
