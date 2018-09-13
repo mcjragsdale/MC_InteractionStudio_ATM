@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var request = require("request");
+var config = require('config');
+console.log('NODE_CONFIG_DIR: ' + config.util.getEnv('NODE_CONFIG_DIR'));
+console.log('NODE_ENV: ' + config.util.getEnv('NODE_ENV'));
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -26,7 +29,7 @@ router.get('/balanceinquiry', function(req, res, next) {
       json: true 
     };
 
-
+    
     request(options2, function (error, response, body) {      
       if (error){
         throw new Error(error);
@@ -42,8 +45,8 @@ router.get('/balanceinquiry', function(req, res, next) {
 });
 
 function getAuthToken(callback) {
-  var ci = '344c019c-1fa0-4854-9a23-9cb6f3a7f33d'; //postman.getEnvironmentVariable('isClientId');
-  var cs = '9ae8a1e0-869b-486b-b71d-dd0c54d75aaa'; //postman.getEnvironmentVariable('isClientSecret');
+  var ci = Config.Credentials.ClientID;
+  var cs = Config.Credentials.ClientSeceret
   var cics = ci + ":" + cs;
   let buff = new Buffer(cics);  
   let base64data = buff.toString('base64');
