@@ -45,8 +45,8 @@ router.get('/balanceinquiry', function(req, res, next) {
 });
 
 function getAuthToken(callback) {
-  var ci = Config.Credentials.ClientID;
-  var cs = Config.Credentials.ClientSeceret
+  var ci = config.Credentials.ClientID;
+  var cs = config.Credentials.ClientSeceret
   var cics = ci + ":" + cs;
   let buff = new Buffer(cics);  
   let base64data = buff.toString('base64');
