@@ -1,40 +1,38 @@
 {
-  "name": "Small Sharp Tool",
-  "description": "This app does one little thing, and does it well.",
-  "keywords": [
-    "productivity",
-    "HTML5",
-    "scalpel"
-  ],
-  "website": "https://small-sharp-tool.com/",
-  "repository": "https://github.com/jane-doe/small-sharp-tool",
-  "logo": "https://small-sharp-tool.com/logo.svg",
-  "success_url": "/welcome",
-  "scripts": {
-    "postdeploy": "bundle exec rake bootstrap"
-  },
-  "env": {
-    "SECRET_TOKEN": {
-      "description": "A secret key for verifying the integrity of signed cookies.",
-      "generator": "secret"
-    },
-    "WEB_CONCURRENCY": {
-      "description": "The number of processes to run.",
-      "value": "5"
-    }
-  },
-  "formation": {
-    "web": {
-      "quantity": 2,
-      "size": "Performance-M"
-    }
-  },
-  "image": "heroku/ruby",
-  "environments": {
-    "test": {
-      "scripts": {
-        "test": "bundle exec rake test"
-      }
-    }
-  }
+	"name": "Interaction Studio ATM",
+	"description": "Demonstrate how IS can communicate with external systems, in this case and ATM machine.",
+	"repository": "",
+	"keywords": [
+		"Interaction Studio",
+		"ATM",
+		"marketing",
+		"cloud",
+		"custom",
+		"activity",
+		"salesforce"
+	],
+	"logo": "http://image.s6.exacttarget.com/lib/fe9112727360007b77/m/1/Salesforce_Marketing_Cloud.png",
+	"env": {
+		"HEROKU_APP_NAME": {
+			"description": "Name of the Heroku application above (either Heroku default or your custom name)."
+		},
+		"KEY": {
+			"ClientID": "This is the Interaction Studio Client ID, not your marketing cloud API user!",
+			"required": "true"
+		},
+		"ClientSeceret": {
+      "description": "This is the Interaction Studio Client Seceret, not your marketing cloud API user!",
+      "required": "true"
+		},
+		"SiteKey": {
+      "description": "Interaction Studio Site Key",
+      "required": "true"
+		},
+		"Logo": {
+			"description": "Your customers logo, It should be around 50px high. if it's bigger it will be scaled down."		
+		},
+		"Main bacground colow": {
+			"description": "You can use a color name or a hex code ie. White or #ffffff"
+		}
+	}
 }
